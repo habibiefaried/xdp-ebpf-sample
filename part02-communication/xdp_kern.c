@@ -17,11 +17,21 @@ typedef struct {
 
 BPF_PERF_OUTPUT(chown_events);
 
+static inline void copyStr(char a[], char b[]){
+	int c = 0;
+	while (b[c] != '\0') {
+		a[c] = b[c];
+		c++;
+	}
+	a[c] = '\0';
+}
+
+
 int xdp_perf(struct xdp_md *ctx) {
 	chown_event_t event = {};
 	event.I1 = 500;
 	event.I2 = 1000;
-	strcpy(Sentence,"Hello world");
+	copyStr(Sentence,"Hello world");
 	chown_events.perf_submit(ctx, &event, sizeof(event));
 	return XDP_PASS;
 }
