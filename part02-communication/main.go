@@ -34,7 +34,7 @@ func usage() {
 }
 
 type chownEvent struct {
-    I1          int32
+    I1          uint32
     I2          int32
     Sentence    [256]byte
 }
