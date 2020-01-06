@@ -28,6 +28,7 @@ static inline void copyStr(char a[], char b[]){
 
 
 int xdp_perf(struct xdp_md *ctx) {
+	//for each packet will be pushing the event
 	chown_event_t event = {};
 	event.I1 = 500;
 	event.I2 = 1000;
