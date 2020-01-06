@@ -31,7 +31,7 @@ int xdp_perf(struct xdp_md *ctx) {
 	chown_event_t event = {};
 	event.I1 = 500;
 	event.I2 = 1000;
-	copyStr(Sentence,"Hello world");
+	copyStr(event.Sentence,"Hello world");
 	chown_events.perf_submit(ctx, &event, sizeof(event));
 	return XDP_PASS;
 }
