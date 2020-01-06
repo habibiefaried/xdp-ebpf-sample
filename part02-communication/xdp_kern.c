@@ -8,7 +8,6 @@
 #include <linux/if_vlan.h>
 #include <linux/ip.h>
 #include <linux/ipv6.h>
-#include <string.h>
 
 typedef struct {
 	u64 I1;
@@ -17,6 +16,13 @@ typedef struct {
 } chown_event_t;
 
 BPF_PERF_OUTPUT(chown_events);
+
+char *strcpy(char *dest, const char *src) {
+	//taken from: https://github.com/torvalds/linux/blob/master/lib/string.c
+	char *tmp = dest;
+	while ((*dest++ = *src++) != '\0');
+	return tmp;
+}
 
 int xdp_perf(struct xdp_md *ctx) {
 	chown_event_t event = {};
