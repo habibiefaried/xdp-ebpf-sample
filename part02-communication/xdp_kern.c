@@ -10,7 +10,7 @@
 #include <linux/ipv6.h>
 
 typedef struct {
-	u64 I1;
+	int I1;
 	int I2;
 	char Sentence[256];
 } chown_event_t;
