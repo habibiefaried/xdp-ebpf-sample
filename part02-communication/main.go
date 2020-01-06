@@ -85,7 +85,7 @@ func main() {
     }()
 
     /* Initialize bpf map table */
-    table := bpf.NewTable(m.TableId("chown_events"), m)
+    table := bpf.NewTable(module.TableId("chown_events"), m)
     channel := make(chan []byte)
     perfMap, err := bpf.InitPerfMap(table, channel)
     if err != nil {
