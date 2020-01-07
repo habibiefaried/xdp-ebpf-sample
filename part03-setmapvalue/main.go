@@ -5,9 +5,6 @@ import (
 	"os"
 	"os/signal"
 	"io/ioutil"
-    "encoding/binary"
-    "bytes"
-    "unsafe"
 	bpf "github.com/iovisor/gobpf/bcc"
 )
 
