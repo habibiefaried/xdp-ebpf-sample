@@ -1,13 +1,13 @@
 #define KBUILD_MODNAME "foo"
 #include <uapi/linux/bpf.h>
-#include <linux/in.h>
-#include <linux/if_ether.h>
-#include <linux/if_packet.h>
-#include <linux/if_vlan.h>
-#include <linux/ip.h>
-#include <linux/ipv6.h>
+#include <uapi/linux/if_ether.h>
+#include <uapi/linux/if_packet.h>
+#include <uapi/linux/ip.h>
+#include <uapi/linux/in.h>
+#include <uapi/linux/udp.h>
+#include <bcc/proto.h>
 
-typedef struct Leaf {
+struct Leaf {
 	int I2;
 	char p[256];
 };
