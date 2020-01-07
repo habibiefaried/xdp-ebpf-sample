@@ -7,7 +7,7 @@
 #include <linux/ip.h>
 #include <linux/ipv6.h>
 
-struct Leaf {
+typedef struct Leaf {
 	int I2;
 	char p[256];
 };
