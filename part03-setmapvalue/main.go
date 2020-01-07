@@ -15,7 +15,6 @@ import (
 #cgo LDFLAGS: -lbcc
 #include <bcc/bcc_common.h>
 #include <bcc/libbpf.h>
-#include <bcc/proto.h>
 void perf_reader_free(void *ptr);
 */
 import "C"
