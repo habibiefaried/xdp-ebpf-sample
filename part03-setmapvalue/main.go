@@ -7,7 +7,7 @@ import (
 	"io/ioutil"
     "encoding/binary"
     "bytes"
-	bpf "github.com/iovisor/gobpf/bcc"
+	bpf "github.com/habibiefaried/gobpf/bcc"
 )
 
 /*
@@ -15,6 +15,7 @@ import (
 #cgo LDFLAGS: -lbcc
 #include <bcc/bcc_common.h>
 #include <bcc/libbpf.h>
+#include <bcc/proto.h>
 void perf_reader_free(void *ptr);
 */
 import "C"
@@ -87,6 +88,7 @@ func main() {
     _ = binary.Write(bufIdx, binary.LittleEndian, 5)
     bufCD := new(bytes.Buffer)
     _ = binary.Write(bufCD, binary.LittleEndian, cd)
+    C.lookup_or_try_init(bufIdx.Bytes(),bufIdx.Bytes());
     _ = table.Set(bufIdx.Bytes(),bufCD.Bytes())
     /* */
 
