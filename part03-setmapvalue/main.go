@@ -71,9 +71,9 @@ func main() {
 
     /* Initialize bpf map table */
     table := bpf.NewTable(module.TableId("cache"), module)
-    key := make([]byte, 1)
+    key := make([]byte, 4)
     binary.LittleEndian.PutUint32(key, 2)
-    val := make([]byte, 1)
+    val := make([]byte, 4)
     binary.LittleEndian.PutUint32(val, 25)
     table.Set(key,val)
 
