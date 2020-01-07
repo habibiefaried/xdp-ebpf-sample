@@ -84,10 +84,11 @@ func main() {
     binary.LittleEndian.PutUint32(val, 25)
     table.Set(key,val)
 
-    binary.LittleEndian.PutUint32(key, 3)
+    key2 := make([]byte, 4)
+    binary.LittleEndian.PutUint32(key2, 3)
     buf := new(bytes.Buffer)
     _ = binary.Write(buf, binary.LittleEndian, data{num: 25})
-    table2.Set(key,buf.Bytes())
+    table2.Set(key2,buf.Bytes())
 
     /* Waiting for interrupt signal to close the program */
     fmt.Println("The program is already started, hit CTRL+C to stop")
