@@ -75,7 +75,7 @@ func main() {
     binary.LittleEndian.PutUint32(key, 1)
     val := make([]byte, 4)
     binary.LittleEndian.PutUint32(val, 1)
-    table.Set(key,val
+    table.Set(key,val)
 
     /* Waiting for interrupt signal to close the program */
     fmt.Println("The program is already started, hit CTRL+C to stop")
