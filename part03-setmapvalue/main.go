@@ -85,9 +85,9 @@ func main() {
 
     /* Try to set the bpf map "cache" */
     bufIdx := new(bytes.Buffer)
-    err := binary.Write(bufIdx, binary.LittleEndian, 5)
+    _ = binary.Write(bufIdx, binary.LittleEndian, 5).Bytes()
     bufCD := new(bytes.Buffer)
-    err := binary.Write(bufCD, binary.LittleEndian, cd)
+    _ = binary.Write(bufCD, binary.LittleEndian, cd).Bytes()
     _ = table.Set(bufIdx,bufCD)
     /* */
 
