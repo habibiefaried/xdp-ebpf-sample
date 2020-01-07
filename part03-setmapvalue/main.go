@@ -5,7 +5,6 @@ import (
 	"os"
 	"os/signal"
 	"io/ioutil"
-    "bytes"
     "encoding/binary"
 	bpf "github.com/iovisor/gobpf/bcc"
 )
@@ -72,11 +71,11 @@ func main() {
 
     /* Initialize bpf map table */
     table := bpf.NewTable(module.TableId("cache"), module)
-    key := new(bytes.Buffer)
-    val := new(bytes.Buffer)
-    binary.Write(key, binary.LittleEndian, 1)
-    binary.Write(val, binary.LittleEndian, 2)
-    table.Set(key.Bytes(),val.Bytes())
+    key := make([]byte, 4)
+    binary.LittleEndian.PutUint32(key, 2)
+    val := make([]byte, 4)
+    binary.LittleEndian.PutUint32(val, 25)
+    table.Set(key,val)
 
     /* Waiting for interrupt signal to close the program */
     fmt.Println("The program is already started, hit CTRL+C to stop")
