@@ -8,7 +8,7 @@
 #include <bcc/proto.h>
 
 struct number {
-    num         unsigned int;
+    unsigned int num;
 };
 
 BPF_HASH(cache, int, int, 256);
@@ -22,7 +22,7 @@ int xdp_hash(struct xdp_md *ctx) {
     	bpf_trace_printk("NULL VALUE DETECTED\n");
     }
 
-    int key = 3;
+    key = 3;
     if(cache2.lookup(&key)) {
     	struct number * n = cache.lookup(&key);
 		bpf_trace_printk("Tested %d\n",n->num);
