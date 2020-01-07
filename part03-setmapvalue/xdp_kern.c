@@ -25,7 +25,7 @@ int xdp_hash(struct xdp_md *ctx) {
     int key2 = 3;
     struct number * n = cache2.lookup(&key2);
     if (n) {
-		bpf_trace_printk("VALUE OK\n");
+		bpf_trace_printk("VALUE OK: %d\n",n->num);
     } else {
     	bpf_trace_printk("NULL VALUE DETECTED\n");
     }
