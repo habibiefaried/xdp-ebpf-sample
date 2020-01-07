@@ -26,11 +26,6 @@ func usage() {
     os.Exit(1)
 }
 
-type cacheData struct {
-    I2          int32
-    Sentence    []byte
-}
-
 func main() {
     var device string
     if len(os.Args) != 2 {
@@ -78,20 +73,7 @@ func main() {
 
     /* Initialize bpf map table */
     table := bpf.NewTable(module.TableId("cache"), module)
-    cd := cacheData{
-        I2 : 1,
-        Sentence: []byte("Hello"),
-    }
-
-    /* Try to set the bpf map "cache" */
-    bufIdx := new(bytes.Buffer)
-    _ = binary.Write(bufIdx, binary.LittleEndian, 5)
-    bufCD := new(bytes.Buffer)
-    _ = binary.Write(bufCD, binary.LittleEndian, cd)
-    byteBufIdx := bufIdx.Bytes()
-    byteBufCD := bufCD.Bytes()
-    _ = table.SetP(unsafe.Pointer(&byteBufIdx[0]),unsafe.Pointer(&byteBufCD[0]))
-    /* */
+    table.Set([]byte("Habibie Faried"),[]byte("Hello World"))
 
     /* Waiting for interrupt signal to close the program */
     fmt.Println("The program is already started, hit CTRL+C to stop")
