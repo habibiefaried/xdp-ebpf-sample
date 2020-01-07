@@ -12,6 +12,10 @@ BPF_HASH(cache, int, int, 256);
 int xdp_hash(struct xdp_md *ctx) {
 	int key = 1;
 	int lookup_leaf = cache.lookup(&key);
-	printf(lookup_leaf);
+	if(lookup_leaf) {
+      bpf_trace_printk(lookup_leaf);
+    } else {
+    	bpf_trace_printk("NULL VALUE DETECTED");
+    }
 	return XDP_PASS;
 }
