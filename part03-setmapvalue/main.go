@@ -87,7 +87,6 @@ func main() {
     _ = binary.Write(bufIdx, binary.LittleEndian, 5)
     bufCD := new(bytes.Buffer)
     _ = binary.Write(bufCD, binary.LittleEndian, cd)
-    C.lookup_or_try_init(bufIdx.Bytes(),bufIdx.Bytes());
     _ = table.Set(bufIdx.Bytes(),bufCD.Bytes())
     /* */
 
