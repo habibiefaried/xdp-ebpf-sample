@@ -12,7 +12,7 @@ BPF_HASH(cache, unsigned int, unsigned int, 256);
 int xdp_hash(struct xdp_md *ctx) {
 	unsigned int key = 1;
 	if(cache.lookup(key)) {
-      bpf_trace_printk("Tested %d\n",cache.lookup(&key));
+      bpf_trace_printk("Tested %d\n",cache.lookup(key));
     } else {
     	bpf_trace_printk("NULL VALUE DETECTED\n");
     }
