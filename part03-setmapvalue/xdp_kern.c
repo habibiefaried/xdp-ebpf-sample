@@ -23,7 +23,7 @@ int xdp_hash(struct xdp_md *ctx) {
     }
 
     int key2 = 3;
-    struct number * n = cache.lookup(&key2);
+    struct number n = cache.lookup(&key2);
     if (n) {
 		bpf_trace_printk("VALUE OK\n");
     } else {
