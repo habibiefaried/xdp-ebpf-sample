@@ -88,8 +88,8 @@ func main() {
     _ = binary.Write(bufIdx, binary.LittleEndian, 5)
     bufCD := new(bytes.Buffer)
     _ = binary.Write(bufCD, binary.LittleEndian, cd)
-    byteBufIdx = bufIdx.Bytes()
-    byteBufCD = bufCD.Bytes()
+    byteBufIdx := bufIdx.Bytes()
+    byteBufCD := bufCD.Bytes()
     _ = table.SetP(unsafe.Pointer(&byteBufIdx[0]),unsafe.Pointer(&byteBufCD[0]))
     /* */
 
