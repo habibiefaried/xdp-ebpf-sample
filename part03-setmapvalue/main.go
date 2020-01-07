@@ -70,7 +70,7 @@ func main() {
 
     /* Initialize bpf map table */
     table := bpf.NewTable(module.TableId("cache"), module)
-    table.Set([]byte("Habibie Faried"),[]byte("Hello World"))
+    table.Set([]byte("habibie"),[]byte("Hello World"))
 
     /* Waiting for interrupt signal to close the program */
     fmt.Println("The program is already started, hit CTRL+C to stop")

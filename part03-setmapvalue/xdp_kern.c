@@ -10,5 +10,7 @@
 BPF_HASH(cache, char *, char *, 256);
 
 int xdp_hash(struct xdp_md *ctx) {
+	char * lookup_leaf = cache.lookup("habibie");
+	printf(lookup_leaf)
 	return XDP_PASS;
 }
