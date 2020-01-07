@@ -12,7 +12,7 @@ struct Leaf {
 	char p[256];
 };
 
-BPF_HASH(cache, int, struct Leaf, 128);
+BPF_HASH(cache, int, struct Leaf, 256);
 
 int xdp_hash(struct xdp_md *ctx) {
 	return XDP_PASS;
