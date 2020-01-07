@@ -6,6 +6,7 @@ import (
 	"os/signal"
 	"io/ioutil"
     "encoding/binary"
+    "bytes"
 	bpf "github.com/iovisor/gobpf/bcc"
 )
 
@@ -84,7 +85,7 @@ func main() {
     table.Set(key,val)
 
     binary.LittleEndian.PutUint32(key, 3)
-    buf := new(bytes.Buffer)
+    buf = new(bytes.Buffer)
     _ := binary.Write(buf, binary.LittleEndian, data{num: 25})
     table2.Set(key,buf.Bytes())
 
