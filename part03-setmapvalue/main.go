@@ -5,7 +5,6 @@ import (
 	"os"
 	"os/signal"
 	"io/ioutil"
-    "unsafe"
     "encoding/binary"
     "bytes"
 	bpf "github.com/iovisor/gobpf/bcc"
@@ -85,10 +84,10 @@ func main() {
 
     /* Try to set the bpf map "cache" */
     bufIdx := new(bytes.Buffer)
-    _ = binary.Write(bufIdx, binary.LittleEndian, 5).Bytes()
+    _ = binary.Write(bufIdx, binary.LittleEndian, 5)
     bufCD := new(bytes.Buffer)
-    _ = binary.Write(bufCD, binary.LittleEndian, cd).Bytes()
-    _ = table.Set(bufIdx,bufCD)
+    _ = binary.Write(bufCD, binary.LittleEndian, cd)
+    _ = table.Set(bufIdx.Bytes(),bufCD.Bytes())
     /* */
 
     /* Waiting for interrupt signal to close the program */
