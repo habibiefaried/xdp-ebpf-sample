@@ -7,7 +7,7 @@ import (
 	"io/ioutil"
     "encoding/binary"
     "bytes"
-	bpf "github.com/habibiefaried/gobpf/bcc"
+	bpf "github.com/iovisor/gobpf/bcc"
 )
 
 /*
