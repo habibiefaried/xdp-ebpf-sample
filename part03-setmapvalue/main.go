@@ -18,6 +18,10 @@ void perf_reader_free(void *ptr);
 */
 import "C"
 
+type data struct {
+    num         uint32
+}
+
 func usage() {
     fmt.Printf("Usage: %v <ifdev>\n", os.Args[0])
     fmt.Printf("e.g.: %v eth0\n", os.Args[0])
@@ -71,11 +75,18 @@ func main() {
 
     /* Initialize bpf map table */
     table := bpf.NewTable(module.TableId("cache"), module)
+    table2 := bpf.NewTable(module.TableId("cache2"), module)
+
     key := make([]byte, 4)
     binary.LittleEndian.PutUint32(key, 2)
     val := make([]byte, 4)
     binary.LittleEndian.PutUint32(val, 25)
     table.Set(key,val)
+
+    binary.LittleEndian.PutUint32(key, 3)
+    buf := new(bytes.Buffer)
+    _ := binary.Write(buf, binary.LittleEndian, data{num: 25})
+    table2.Set(key,buf.Bytes())
 
     /* Waiting for interrupt signal to close the program */
     fmt.Println("The program is already started, hit CTRL+C to stop")
