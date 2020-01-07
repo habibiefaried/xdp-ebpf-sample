@@ -7,10 +7,11 @@
 #include <uapi/linux/udp.h>
 #include <bcc/proto.h>
 
-BPF_HASH(cache, char *, char *, 256);
+BPF_HASH(cache, int, int, 256);
 
 int xdp_hash(struct xdp_md *ctx) {
-	char * lookup_leaf = cache.lookup("habibie");
-	printf(lookup_leaf)
+	int key = 1;
+	int lookup_leaf = cache.lookup(&key);
+	printf(lookup_leaf);
 	return XDP_PASS;
 }
