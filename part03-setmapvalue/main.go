@@ -5,6 +5,9 @@ import (
 	"os"
 	"os/signal"
 	"io/ioutil"
+    "unsafe"
+    "encoding/binary"
+    "bytes"
 	bpf "github.com/iovisor/gobpf/bcc"
 )
 
@@ -25,7 +28,7 @@ func usage() {
 
 type cacheData struct {
     I2          int32
-    Sentence    [256]byte
+    Sentence    []byte
 }
 
 func main() {
@@ -79,9 +82,13 @@ func main() {
         I2 : 1,
         Sentence: []byte("Hello"),
     }
-    
+
     /* Try to set the bpf map "cache" */
-    _ = table.Set(1,cd)
+    bufIdx := new(bytes.Buffer)
+    err := binary.Write(bufIdx, binary.LittleEndian, 5)
+    bufCD := new(bytes.Buffer)
+    err := binary.Write(bufCD, binary.LittleEndian, cd)
+    _ = table.Set(bufIdx,bufCD)
     /* */
 
     /* Waiting for interrupt signal to close the program */
